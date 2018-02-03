@@ -62,7 +62,7 @@ bool render() {
   mat4 T(1.0f);
   // *********************************
   // Create translation matrix - use pos vector
-
+  T = translate(T, pos);
   // *********************************
   // Create MVP matrix
   auto V = cam.get_view();

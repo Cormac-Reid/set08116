@@ -14,18 +14,19 @@ texture tex;
 bool load_content() {
   // Construct geometry object
   geometry geom;
+  geometry geom_sign;
   // Create triangle data
   // Positions
-  vector<vec3> positions{vec3(0.0f, 1.0f, 0.0f), vec3(-1.0f, -1.0f, 0.0f), vec3(1.0f, -1.0f, 0.0f)};
+  vector<vec3> triangle_positions{vec3(0.0f, 1.0f, 0.0f), vec3(-1.0f, -1.0f, 0.0f), vec3(1.0f, -1.0f, 0.0f)};
   // *********************************
   // Define texture coordinates for triangle
-
+  vector<vec2> triangle_tex_coords{ vec2(1.0f, 0.0f), vec2(0.0f, 0.4f), vec2(0.0f, 0.0f) };
   // *********************************
   // Add to the geometry
-  geom.add_buffer(positions, BUFFER_INDEXES::POSITION_BUFFER);
+  geom.add_buffer(triangle_positions, BUFFER_INDEXES::POSITION_BUFFER);
   // *********************************
   // Add texture coordinate buffer to geometry
-
+  geom.add_buffer(triangle_tex_coords, BUFFER_INDEXES::TEXTURE_COORDS_0);
   // *********************************
 
   // Create mesh object
@@ -36,9 +37,9 @@ bool load_content() {
   eff.add_shader("27_Texturing_Shader/simple_texture.frag", GL_FRAGMENT_SHADER);
   // *********************************
   // Build effect
-
+  eff.build();
   // Load texture "textures/sign.jpg"
-
+  tex = texture("textures/sign.jpg");
   // *********************************
 
   // Set camera properties
@@ -72,14 +73,13 @@ bool render() {
 
   // *********************************
   // Bind texture to renderer
-
+  renderer::bind(tex, 0);
   // Set the texture value for the shader here
-
+  glUniform1i(eff.get_uniform_location("tex"), 0);
   // *********************************
 
   // Render the mesh
   renderer::render(m);
-
   return true;
 }
 

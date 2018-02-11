@@ -46,10 +46,10 @@ bool load_content() {
   // 2 - mipmaps, anisotropic
   // 3 - mipmaps, no anisotropic
   // ******************************
-
-
-
-
+  texs[0] = texture("textures/sign.jpg", false, false);
+  texs[1] = texture("textures/sign.jpg", false, true);
+  texs[2] = texture("textures/sign.jpg", true, false);
+  texs[3] = texture("textures/sign.jpg", true, true);
   // *********************************
   // Set camera properties
   cam.set_position(vec3(10.0f, 2.0f, 200.0f));
@@ -62,7 +62,7 @@ bool load_content() {
 
 bool update(float delta_time) {
   // Move camera, notice the slightly altered technique
-  vec3 dir;
+	vec3 dir(0);
   if (glfwGetKey(renderer::get_window(), GLFW_KEY_UP)) {
     dir += vec3(0.0f, 10.0f, 0.0f);
   }

@@ -20,7 +20,7 @@ bool load_content() {
   vector<vec3> positions{vec3(-1.0f, -1.0f, 0.0f), vec3(1.0f, -1.0f, 0.0f), vec3(-1.0f, 1.0f, 0.0f),
                          vec3(1.0f, 1.0f, 0.0f)};
   // Texture coordinates
-  vector<vec2> tex_coords{vec2(0.0f, 0.0f), vec2(10.0f, 0.0f), vec2(0.0f, 400.0f), vec2(10.0f, 400.0f)};
+  vector<vec2> tex_coords{vec2(0.0f, 0.0f), vec2(1.0f, 0.0f), vec2(0.0f, 1.0f), vec2(1.0f, 1.0f)};
   // Add to the geometry
   geom.add_buffer(positions, BUFFER_INDEXES::POSITION_BUFFER);
   geom.add_buffer(tex_coords, BUFFER_INDEXES::TEXTURE_COORDS_0);
@@ -28,7 +28,7 @@ bool load_content() {
   // Create  mesh objects - reuse geometry
   for (unsigned int i = 0; i < meshes.size(); ++i) {
     meshes[i] = mesh(geom);
-    meshes[i].get_transform().scale = vec3(10.0f, 400.0f, 10.0f);
+    meshes[i].get_transform().scale = vec3(10.0f, 10.0f, 10.0f);
     meshes[i].get_transform().rotate(vec3(-half_pi<float>(), 0.0f, 0.0f));
     meshes[i].get_transform().translate((static_cast<float>(i) * vec3(21.0f, 0.0f, 0.0f)) - vec3(21.0f, 0.0f, 0));
   }
@@ -47,10 +47,10 @@ bool load_content() {
   // 2 - mipmaps, no anisotropic
   // 3 - mipmaps, anisotropic
   // ******************************
-  texs[0] = texture("textures/checker.png", false, false);
-  texs[1] = texture("textures/checker.png", false, true);
-  texs[2] = texture("textures/checker.png", true, true);
-  texs[3] = texture("textures/checker.png", true, true);
+  texs[0] = texture("textures/sign.jpg", false, false);
+  texs[1] = texture("textures/sign.jpg", false, true);
+  texs[2] = texture("textures/sign.jpg", true, true);
+  texs[3] = texture("textures/sign.jpg", true, true);
 
   // Set camera properties
   cam.set_position(vec3(10.0f, 2.0f, 200.0f));
@@ -63,7 +63,7 @@ bool load_content() {
 
 bool update(float delta_time) {
   // Move camera, notice the slightly altered technique
-  vec3 dir;
+  vec3 dir(0);
   if (glfwGetKey(renderer::get_window(), GLFW_KEY_UP)) {
     dir += vec3(0.0f, 10.0f, 0.0f);
   }

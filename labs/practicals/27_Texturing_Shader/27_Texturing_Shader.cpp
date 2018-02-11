@@ -7,6 +7,7 @@ using namespace graphics_framework;
 using namespace glm;
 
 mesh m;
+mesh m2;
 effect eff;
 target_camera cam;
 texture tex;
@@ -14,19 +15,18 @@ texture tex;
 bool load_content() {
   // Construct geometry object
   geometry geom;
-  geometry geom_sign;
   // Create triangle data
   // Positions
   vector<vec3> triangle_positions{vec3(0.0f, 1.0f, 0.0f), vec3(-1.0f, -1.0f, 0.0f), vec3(1.0f, -1.0f, 0.0f)};
   // *********************************
   // Define texture coordinates for triangle
-  vector<vec2> triangle_tex_coords{ vec2(1.0f, 0.0f), vec2(0.0f, 0.4f), vec2(0.0f, 0.0f) };
+  vector<vec2> tex_coords{ vec2(1.0f, 0.0f), vec2(0.0f, 0.4f), vec2(0.0f, 0.0f) };
   // *********************************
   // Add to the geometry
   geom.add_buffer(triangle_positions, BUFFER_INDEXES::POSITION_BUFFER);
   // *********************************
   // Add texture coordinate buffer to geometry
-  geom.add_buffer(triangle_tex_coords, BUFFER_INDEXES::TEXTURE_COORDS_0);
+  geom.add_buffer(tex_coords, BUFFER_INDEXES::TEXTURE_COORDS_0);
   // *********************************
 
   // Create mesh object

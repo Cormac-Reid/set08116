@@ -76,7 +76,7 @@ bool render() {
 
   // *********************************
   // Bind the three textures - use different index for each
-
+  vec4 colour = texture("textures/sign.jpg", vec2(0.0f, 0.0f))
 
 
   // *********************************

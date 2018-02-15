@@ -3,7 +3,7 @@
 // Main textures
 uniform sampler2D tex[2];
 // Blend map
-uniform sampler2D blend;
+uniform sampler2D blend_map;
 
 // Incoming texture coordinate
 layout(location = 0) in vec2 tex_coord;

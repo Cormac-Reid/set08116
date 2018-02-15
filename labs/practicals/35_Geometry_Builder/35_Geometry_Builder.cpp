@@ -16,34 +16,34 @@ bool load_content() {
 
   // *********************************
   // box
-
+  meshes["box"] = mesh(geometry_builder::create_box());
   // Tetrahedron
-
+  meshes["tetrahedron"] = mesh(geometry_builder::create_tetrahedron());
   // Pyramid
-
+  meshes["pyramid"] = mesh(geometry_builder::create_pyramid());
   // Disk
-
+  meshes["disk"] = mesh(geometry_builder::create_disk(unsigned int (20)));
   // Cylinder
-
+  meshes["cylinder"] = mesh(geometry_builder::create_cylinder());
   // Sphere
-
+  meshes["sphere"] = mesh(geometry_builder::create_sphere());
   // Torus
-
+  meshes["torus"] = mesh(geometry_builder::create_torus());
 
   // Set the transforms for your meshes here
   // 5x scale, move(-10.0f, 2.5f, -30.0f)
-
-
+  meshes["box"].get_transform().scale *= 5.0f;
+  meshes["box"].get_transform().position += vec3(-10.0f, 2.5f, -30.0f);
   // 4x scale, move(-30.0f, 10.0f, -10.0f)
-
-
+  meshes["tetrahedron"].get_transform().scale *= 4.0f;
+  meshes["tetrahedron"].get_transform().position += vec3(-30.0f, 10.0f, -10.0f);
   // 5x scale, move(-10.0f, 7.5f, -30.0f)
-
-
+  meshes["pyramid"].get_transform().scale *= 5.0f;
+  meshes["pyramid"].get_transform().position += vec3(-10.0f, 7.5f, -30.0f);
   // scale(3.0f, 1.0f, 3.0f), move(-10.0f, 11.5f, -30.0f), 180 rotate X axis
-
-
-
+  meshes["disk"].get_transform().scale *= vec3(3.0f, 1.0f, 3.0f);
+  meshes["disk"].get_transform().position += vec3(-10.0f, 11.5f, -30.0f);
+  meshes["disk"].get_transform().rotate(vec3(pi<float>()/2, 0.0f, 0.0f));
   // 5x scale, move(-25.0f, 2.5f, -25.0f)
 
 
@@ -94,9 +94,9 @@ bool render() {
 
     // *********************************
     // Bind texture to renderer
-
+	renderer::bind(tex, 1);
     // Set the texture value for the shader here
-
+	glUniform1i(eff.get_uniform_location("tex"), 1);
     // *********************************
     // Render mesh
     renderer::render(m);

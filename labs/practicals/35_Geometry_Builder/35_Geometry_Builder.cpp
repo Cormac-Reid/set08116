@@ -24,11 +24,11 @@ bool load_content() {
   // Disk
   meshes["disk"] = mesh(geometry_builder::create_disk(unsigned int (20)));
   // Cylinder
-  meshes["cylinder"] = mesh(geometry_builder::create_cylinder());
+  meshes["cylinder"] = mesh(geometry_builder::create_cylinder(unsigned int(20), unsigned int(20)));
   // Sphere
-  meshes["sphere"] = mesh(geometry_builder::create_sphere());
+  meshes["sphere"] = mesh(geometry_builder::create_sphere(unsigned int(20), unsigned int(20)));
   // Torus
-  meshes["torus"] = mesh(geometry_builder::create_torus());
+  meshes["torus"] = mesh(geometry_builder::create_torus(unsigned int(20), unsigned int(20), float(1), float(5)));
 
   // Set the transforms for your meshes here
   // 5x scale, move(-10.0f, 2.5f, -30.0f)
@@ -45,14 +45,14 @@ bool load_content() {
   meshes["disk"].get_transform().position += vec3(-10.0f, 11.5f, -30.0f);
   meshes["disk"].get_transform().rotate(vec3(pi<float>()/2, 0.0f, 0.0f));
   // 5x scale, move(-25.0f, 2.5f, -25.0f)
-
-
+  meshes["cylinder"].get_transform().scale *= 5;
+  meshes["cylinder"].get_transform().position += vec3(-25.0f, 2.5f, -25.0f);
   // 2.5x scale, move(-25.0f, 10.0f, -25.0f)
-
-
+  meshes["sphere"].get_transform().scale *= 2.5;
+  meshes["sphere"].get_transform().position += vec3(-25.0f, 10.0f, -25.0f);
   // 180 rotate X axis, move(-25.0f, 10.0f, -25.0f)
-
-
+  meshes["torus"].get_transform().position += vec3(-25.0f, 10.0f, -25.0f);
+  meshes["torus"].get_transform().rotate(vec3(pi<float>() / 2, 0.0f, 0.0f));
   // *********************************
 
   // Load texture
